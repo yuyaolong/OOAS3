@@ -7,7 +7,7 @@
 Frame::Frame( const std::string& name, SDL_Surface* surf ) : 
   screen(IOManager::getInstance().getScreen()),
   surface( surf ),
-  width(Gamedata::getInstance().getXmlInt(name+"/width")), 
+  width(Gamedata::getInstance().getXmlInt(name+"/width")),
   height(Gamedata::getInstance().getXmlInt(name+"/height")),
   sourceX(0),
   sourceY(0)
@@ -68,3 +68,15 @@ void Frame::draw(Sint16 x, Sint16 y, double angle) const {
   SDL_FreeSurface( tmp );
 }
 
+void Frame::draw(Sint16 x, Sint16 y, double angle, double zoomx, double zoomy) const {
+  SDL_Surface* tmp = rotozoomSurfaceXY(surface, angle, zoomx, zoomy, 1);
+  Sint16 zero = 0;
+  Uint16 width = tmp->w;
+  Uint16 height = tmp->h;
+  SDL_Rect src = { zero, zero, width, height };    
+  x -= Viewport::getInstance().X();
+  y -= Viewport::getInstance().Y();
+  SDL_Rect dest = {x, y, 0, 0 };
+  SDL_BlitSurface(tmp, &src, screen, &dest);
+  SDL_FreeSurface( tmp );
+}

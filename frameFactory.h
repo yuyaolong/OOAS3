@@ -3,6 +3,7 @@
 #include <map>
 #include "frame.h"
 #include "gamedata.h"
+#include "SDL/SDL_rotozoom.h"
 
 // The FrameFactory makes frames and reads the corresponding SDL_Surface,
 // storing the frames and their corresponding SDL_Surface (es) in maps. 
@@ -24,7 +25,7 @@ public:
   // entire sheet. For example, a Frame containing an orb or background.
   // The original surface is read from a file and stored in surfaces, 
   // and ExtractSurface is not used. This surface is passed to Frame.
-  Frame* getFrame(const std::string&);
+  Frame* getFrame(const std::string& name);
 
   // The next constructor is for a MultiSprite, a multi-frame sprite.
   // The sprite sheet surface is saved in the surfaces map, and
@@ -36,7 +37,7 @@ public:
   // src_x and src_y are passed will be computed in getFrames and
   // passed as parameters to the Frame constructor, but the Frame
   // width and height will be obtained from the XML:
-  std::vector<Frame*> getFrames(const std::string&);
+  std::vector<Frame*> getFrames(const std::string& name);
 
 private:
   const Gamedata& gdata;

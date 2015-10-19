@@ -8,7 +8,7 @@
 #include "manager.h"
 #include "extractSurface.h"
 #include "frameFactory.h"
-
+#include "twowaysprite.h"
 
 Manager::~Manager() { 
   std::list<Drawable*>::const_iterator ptr = sprites.begin();
@@ -44,8 +44,12 @@ Manager::Manager() :
 
  
   
+  //sprites.push_back( new TwoWaySprite("GundamA"));
   sprites.push_back( new MultiSprite("Gundam"));
+  
   sprites.push_back( new Sprite("greenorb") );
+  
+
   currentSprite = sprites.begin();
   viewport.setObjectToTrack(*currentSprite);
 }

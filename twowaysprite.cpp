@@ -1,8 +1,8 @@
-#include "multisprite.h"
+#include "twowaysprite.h"
 #include "gamedata.h"
 #include "frameFactory.h"
 
-void MultiSprite::advanceFrame(Uint32 ticks) {
+void TwoWaySprite::advanceFrame(Uint32 ticks) {
 	timeSinceLastFrame += ticks;
 	if (timeSinceLastFrame > frameInterval) {
     currentFrame = (currentFrame+1) % numberOfFrames;
@@ -10,14 +10,14 @@ void MultiSprite::advanceFrame(Uint32 ticks) {
 	}
 }
 
-MultiSprite::MultiSprite( const std::string& name) :
+TwoWaySprite::TwoWaySprite( const std::string& name) :
   Drawable(name, 
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"), 
                     Gamedata::getInstance().getXmlInt(name+"/startLoc/y")), 
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/speedX"),
                     Gamedata::getInstance().getXmlInt(name+"/speedY"))
            ),
-  frames( FrameFactory::getInstance().getFrames(name)),
+  frames( FrameFactory::getInstance().getFrames(name) ),
   worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("world/height")),
 
@@ -29,13 +29,13 @@ MultiSprite::MultiSprite( const std::string& name) :
   frameHeight(frames[0]->getHeight())
 { }
 
-void MultiSprite::draw() const { 
+void TwoWaySprite::draw() const { 
   Uint32 x = static_cast<Uint32>(X());
   Uint32 y = static_cast<Uint32>(Y());
-  frames[currentFrame]->draw(x, y);
+  frames[currentFrame]->draw(x, y, 0, 1, 1);
 }
 
-void MultiSprite::update(Uint32 ticks) { 
+void TwoWaySprite::update(Uint32 ticks) { 
   advanceFrame(ticks);
 
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
@@ -51,8 +51,9 @@ void MultiSprite::update(Uint32 ticks) {
   if ( X() < 0) {
     velocityX( abs( velocityX() ) );
   }
+  
   if ( X() > worldWidth-frameWidth) {
-    velocityX( -abs( velocityX() ) );
+    velocityX( -abs( velocityX() ) ); 
   }  
 
 }

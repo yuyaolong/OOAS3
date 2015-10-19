@@ -32,6 +32,7 @@
   <green>205</green>
   <blue>205</blue>
   <factor>1</factor>
+
   <srcX>0</srcX>
   <srcY>0</srcY>
   <width>1280</width>
@@ -70,7 +71,8 @@
   <startLoc x="120" y="140"/>
 
   <frames>3</frames>
-  <frameInterval>100</frameInterval>
+  <frameInterval>200</frameInterval>
+
 
   <srcX>0</srcX>
   <srcY>0</srcY>
@@ -78,19 +80,53 @@
   <height>72</height>
   <speedX>-200</speedX>
   <speedY>200</speedY>
-  <transparency>false</transparency>
+  <transparency>true</transparency>
 </Gundam>
+
+<GundamA>
+  <file>images/GundamA.png</file>
+  <startLoc x="0" y="0"/>
+
+  <frames>10</frames>
+  <frameInterval>50</frameInterval>
+
+  <srcX>0</srcX>
+  <srcY>0</srcY>
+  <width>123</width>
+  <height>186</height>
+  <speedX>-200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</GundamA>
+
+<GundamB>
+  <file>images/GundamB.png</file>
+  <startLoc x="120" y="140"/>
+
+  <frames>7</frames>
+  <frameInterval>100</frameInterval>
+
+  <srcX>0</srcX>
+  <srcY>0</srcY>
+  <width>59</width>
+  <height>110</height>
+  <speedX>-200</speedX>
+  <speedY>100</speedY>
+  <transparency>true</transparency>
+</GundamB>
 
 
 <greenorb>
   <file>images/greenball.bmp</file>
+
+
   <srcX>0</srcX>
   <srcY>0</srcY>
   <width>32</width>
   <height>32</height>
   <startLoc x="320" y="240"/>
-  <speedX>175</speedX>
-  <speedY>175</speedY>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
   <transparency>true</transparency>
 </greenorb>
 
