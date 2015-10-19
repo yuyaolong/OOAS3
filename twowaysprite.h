@@ -6,7 +6,11 @@
 
 class TwoWaySprite : public Drawable {
 public:
+
   TwoWaySprite(const std::string&);
+    TwoWaySprite(const std::string&, int Px, int Py, int Vx, int Vy);
+    
+    
   virtual ~TwoWaySprite() { } 
 
   virtual void draw() const;
@@ -27,6 +31,9 @@ protected:
   int frameWidth;
   int frameHeight;
 
+    int flipX;
+    int flipY;
+    
   void advanceFrame(Uint32 ticks);
   TwoWaySprite(const TwoWaySprite&);
   TwoWaySprite& operator=(const TwoWaySprite&);

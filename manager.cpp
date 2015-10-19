@@ -9,6 +9,8 @@
 #include "extractSurface.h"
 #include "frameFactory.h"
 #include "twowaysprite.h"
+#include "enemy.h"
+#include "vessel.h"
 
 Manager::~Manager() { 
   std::list<Drawable*>::const_iterator ptr = sprites.begin();
@@ -44,10 +46,18 @@ Manager::Manager() :
 
  
   
-  //sprites.push_back( new TwoWaySprite("GundamA"));
-  sprites.push_back( new MultiSprite("Gundam"));
+  	
+  sprites.push_back( new TwoWaySprite("Gundam"));
+    
+    
+for (int i = 0; i<30; i++) {
+        sprites.push_back( new Enemy("Enemy"));
+}
   
-  sprites.push_back( new Sprite("greenorb") );
+for (int i=0; i<5; i++) {
+    sprites.push_back( new Vessel("Vessel1") );
+}
+  
   
 
   currentSprite = sprites.begin();
