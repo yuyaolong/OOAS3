@@ -3,7 +3,7 @@
 #include <map>
 #include "frame.h"
 #include "gamedata.h"
-#include "SDL/SDL_rotozoom.h"
+
 
 // The FrameFactory makes frames and reads the corresponding SDL_Surface,
 // storing the frames and their corresponding SDL_Surface (es) in maps. 
