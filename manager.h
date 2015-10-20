@@ -30,7 +30,10 @@ private:
   const std::string username;
   const std::string title;
   const int frameMax;
-
+    
+    std::vector<int> eachSpritsNumbe;
+    
+    
   void draw() const;
   void update();
 

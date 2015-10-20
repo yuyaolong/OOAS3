@@ -11,6 +11,7 @@
 #include "twowaysprite.h"
 #include "enemy.h"
 #include "vessel.h"
+#include "explotion.h"
 
 Manager::~Manager() { 
   std::list<Drawable*>::const_iterator ptr = sprites.begin();
@@ -36,9 +37,11 @@ Manager::Manager() :
   frameCount( 0 ),
   username(  Gamedata::getInstance().getXmlStr("username") ),
   title( Gamedata::getInstance().getXmlStr("screenTitle") ),
-  frameMax( Gamedata::getInstance().getXmlInt("frameMax") )
+  frameMax( Gamedata::getInstance().getXmlInt("frameMax") ),
+    eachSpritsNumbe()
+
 {
-  if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
     throw string("Unable to initialize SDL: ");
   }
   SDL_WM_SetCaption(title.c_str(), NULL);
@@ -48,16 +51,27 @@ Manager::Manager() :
   
   	
   sprites.push_back( new TwoWaySprite("Gundam"));
+
+    eachSpritsNumbe.push_back(Gamedata::getInstance().getXmlInt("Gundam/number"));
+    eachSpritsNumbe.push_back(Gamedata::getInstance().getXmlInt("Enemy/number"));
+    eachSpritsNumbe.push_back(Gamedata::getInstance().getXmlInt("Vessel1/number"));
+    eachSpritsNumbe.push_back(Gamedata::getInstance().getXmlInt("Explotion/number"));
     
-    
-for (int i = 0; i< Gamedata::getInstance().getXmlInt("Enemy/number"); i++) {
+for (int i = 0; i< eachSpritsNumbe[1]; i++) {
         sprites.push_back( new Enemy("Enemy"));
 }
   
-for (int i=0; i< Gamedata::getInstance().getXmlInt("Vessel1/number"); i++) {
+for (int i=0; i< eachSpritsNumbe[2]; i++) {
     sprites.push_back( new Vessel("Vessel1") );
 }
+    
+
+for (int i=0; i< eachSpritsNumbe[3]; i++) {
+        sprites.push_back( new Explotion("Explotion") );
+}
   
+    
+
   
 
   currentSprite = sprites.begin();
@@ -92,7 +106,12 @@ void Manager::draw() const {
 // }
 
 void Manager::switchSprite() {
-  ++currentSprite;
+    static int whichKindSprite = 0;
+    whichKindSprite++;
+    for (int k=0; k<eachSpritsNumbe[whichKindSprite%(Gamedata::getInstance().getXmlInt("spritesKinds"))]; ++k) {
+         currentSprite++;
+    }
+ 
   if ( currentSprite == sprites.end() ) {
     currentSprite = sprites.begin();
   }

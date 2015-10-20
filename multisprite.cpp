@@ -29,7 +29,25 @@ MultiSprite::MultiSprite( const std::string& name) :
   frameHeight(frames[0]->getHeight())
 { }
 
-void MultiSprite::draw() const { 
+
+
+MultiSprite::MultiSprite(const std::string& name, int Px, int Py, int Vx, int Vy) :
+Drawable(name, Vector2f(Px, Py), Vector2f(Vx, Vy)),
+frames( FrameFactory::getInstance().getFrames(name)),
+worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
+worldHeight(Gamedata::getInstance().getXmlInt("world/height")),
+
+currentFrame(0),
+numberOfFrames( Gamedata::getInstance().getXmlInt(name+"/frames") ),
+frameInterval( Gamedata::getInstance().getXmlInt(name+"/frameInterval") ),
+timeSinceLastFrame( 0 ),
+frameWidth(frames[0]->getWidth()),
+frameHeight(frames[0]->getHeight())
+{ }
+
+
+
+void MultiSprite::draw() const {
   Uint32 x = static_cast<Uint32>(X());
   Uint32 y = static_cast<Uint32>(Y());
   frames[currentFrame]->draw(x, y);
