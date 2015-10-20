@@ -50,11 +50,11 @@ Manager::Manager() :
   sprites.push_back( new TwoWaySprite("Gundam"));
     
     
-for (int i = 0; i<30; i++) {
+for (int i = 0; i< Gamedata::getInstance().getXmlInt("Enemy/number"); i++) {
         sprites.push_back( new Enemy("Enemy"));
 }
   
-for (int i=0; i<5; i++) {
+for (int i=0; i< Gamedata::getInstance().getXmlInt("Vessel1/number"); i++) {
     sprites.push_back( new Vessel("Vessel1") );
 }
   

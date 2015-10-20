@@ -86,7 +86,7 @@
 <Enemy>
   <file>images/Enemy.png</file>
   <startLoc x="0" y="0"/>
-
+  <number>20</number>
   <frames>9</frames>
   <frameInterval>200</frameInterval>
 
@@ -99,25 +99,10 @@
   <transparency>true</transparency>
 </Enemy>
 
-<GundamB>
-  <file>images/GundamB.png</file>
-  <startLoc x="120" y="140"/>
-
-  <frames>7</frames>
-  <frameInterval>100</frameInterval>
-
-  <srcX>0</srcX>
-  <srcY>0</srcY>
-  <width>59</width>
-  <height>110</height>
-  <speedX>-200</speedX>
-  <speedY>100</speedY>
-  <transparency>true</transparency>
-</GundamB>
-
 
 <Vessel1>
   <file>images/Vessel1.png</file>
+  <number>5</number>
   <srcX>0</srcX>
   <srcY>0</srcY>
   <width>359</width>
